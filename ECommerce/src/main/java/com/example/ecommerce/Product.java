@@ -23,6 +23,7 @@ public class Product {
         String selectAllProduct = "select id,name, price from product ;";
         return fetchProductData(selectAllProduct);
     }
+
     public static ObservableList<Product> fetchProductData(String query){
         ObservableList<Product> data = FXCollections.observableArrayList();
         DBConnection dbConnection = new DBConnection();
