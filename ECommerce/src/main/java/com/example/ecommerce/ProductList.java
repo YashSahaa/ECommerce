@@ -11,7 +11,8 @@ import javafx.scene.layout.VBox;
 
 public class ProductList {
     private TableView<Product> productTable;
-    public VBox createTable(ObservableList<Product> data){
+
+    public VBox createTable(ObservableList<Product> data) {
         TableColumn id = new TableColumn("ID");
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
 
@@ -22,7 +23,7 @@ public class ProductList {
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         productTable = new TableView<>();
-        productTable.getColumns().addAll(id,name,price);
+        productTable.getColumns().addAll(id, name, price);
         productTable.setItems(data);
         productTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -31,20 +32,24 @@ public class ProductList {
         vBox.getChildren().addAll(productTable);
         return vBox;
     }
-   /* public VBox getDummyTable(){
-        ObservableList<Product> data = FXCollections.observableArrayList();
-        data.add(new Product(1,"Dell",55000));
-        data.add(new Product(3,"Lenovo",50000));
-        return createTable(data);
-    }*/
-    public VBox getAllProduct(){
+
+    /* public VBox getDummyTable(){
+         ObservableList<Product> data = FXCollections.observableArrayList();
+         data.add(new Product(1,"Dell",55000));
+         data.add(new Product(3,"Lenovo",50000));
+         return createTable(data);
+     }*/
+    public VBox getAllProduct() {
         ObservableList<Product> data = Product.getAllProduct();
         return createTable(data);
     }
-    public Product getSelectedProduct(){
+
+    public Product getSelectedProduct() {
         return productTable.getSelectionModel().getSelectedItem();
     }
-    public VBox getProductsTocart(ObservableList<Product> data){
+
+    public VBox getProductsTocart(ObservableList<Product> data) {
         return createTable(data);
     }
 }
+

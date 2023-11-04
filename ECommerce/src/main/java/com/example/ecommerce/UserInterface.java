@@ -26,13 +26,16 @@ public class UserInterface {
     Customer loggedInCutomer;
     ProductList productList = new ProductList();
     OrderList orderList = new OrderList();
+    SearchList searchList = new SearchList();
     ObservableList<Product> itemToCart = FXCollections.observableArrayList();
     Button placeOrderButton = new Button("Place Order");
     VBox productPage;
+    VBox searchPage;
     VBox orderpage;
     BorderPane createContent(){
         BorderPane root = new BorderPane();
         root.setPrefSize(800,600);
+       // root.setStyle("-fx-background-color: grey;");
         root.setTop(headerBar);
         body = new VBox();
         body.setPadding(new Insets(10));
@@ -68,6 +71,7 @@ public class UserInterface {
         TextField sAddress = new TextField();
         sAddress.setPromptText("Type your Address here");
 
+        Button backButton = new Button("Back to login");
         Button registerButton = new Button("Register");
 
         signupPage = new GridPane();
@@ -84,6 +88,7 @@ public class UserInterface {
         signupPage.add(sPass,1,3);
         signupPage.add(addressSText,0,4);
         signupPage.add(sAddress,1,4);
+        signupPage.add(backButton,0,5);
         signupPage.add(registerButton,1,5);
 
         registerButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -104,6 +109,13 @@ public class UserInterface {
                 else {
                     showDialog("Please fill your details");
                 }
+            }
+        });
+        backButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                body.getChildren().clear();
+                body.getChildren().add(loginPage);
             }
         });
     }
@@ -249,6 +261,9 @@ public class UserInterface {
             @Override
             public void handle(ActionEvent actionEvent) {
                 String ser = searchBar.getText();
+                searchPage = searchList.getAllSearched(ser);
+                body.getChildren().clear();
+                body.getChildren().add(searchPage);
             }
         });
     }
